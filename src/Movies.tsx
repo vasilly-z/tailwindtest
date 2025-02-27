@@ -50,12 +50,12 @@ function Movies() {
             <ul>
                 {filteredMovies.length ? (
                     filteredMovies.map((movie) => (
-                        <li className='mb-2' key={movie.id}>
+                        <li className='fade' key={movie.id}>
                             {movie.title} ({movie.genre})
                         </li>
                     ))
                 ) : (
-                    <li>No movies found</li>
+                    <li className='text-red-300'>No movies found</li>
                 )}
             </ul>
         </div>
