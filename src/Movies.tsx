@@ -1,14 +1,16 @@
 import { useState } from 'react'
-import { MOVIES } from '../constants/movies.data'
+import { MOVIES, TMOVIE } from '../constants/movies.data'
 import { twMerge } from 'tailwind-merge'
+import { CreateMovieForm } from './CreateMovieForm'
 
 function Movies() {
     const [searchTerm, setSearchTerm] = useState('')
     const [selectedGenre, setSelectedGenre] = useState('')
+    const [movies, setMovies] = useState<TMOVIE[]>(MOVIES)
 
-    const genres = Array.from(new Set(MOVIES.map((movie) => movie.genre)))
+    const genres = Array.from(new Set(movies.map((movie) => movie.genre)))
 
-    const filteredMovies = MOVIES.filter((movie) => {
+    const filteredMovies = movies.filter((movie) => {
         const isMatchingSearchTerm = movie.title
             .toLowerCase()
             .includes(searchTerm.toLowerCase())
@@ -20,6 +22,7 @@ function Movies() {
 
     return (
         <div>
+            <CreateMovieForm setMovies={setMovies} /> 
             <h1 className='py-2 margin-0-auto'>Movies</h1>
             <input
                 type="search"
